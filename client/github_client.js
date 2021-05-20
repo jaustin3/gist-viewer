@@ -15,11 +15,12 @@ async function getGistById(gistId){
 }
 
 async function getStarredGists(){
-    var gist_list = await axios.get(GITHUB_BASE_URL + '/gists/starred', {
+    var gist_list = await axios.get(GITHUB_BASE_URL + '/gists/starred',{
         headers: {
-            Authorization: 'Token ' + config.token
+            Authorization: `token ${config.token}`
         }
     })
+    .then(res => res.data)
     .catch(err => console.log(err));
     return gist_list;
 }
@@ -28,7 +29,7 @@ async function starGist(gistId){
     console.log(config.token);
     await axios.put(GITHUB_BASE_URL + `/gists/${gistId}/star`, {}, {
         headers: {
-            Authorization: 'Token ' + config.token
+            Authorization: `token ${config.token}`
         }
     });
 }

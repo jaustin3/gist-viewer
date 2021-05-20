@@ -89,3 +89,5 @@ typings/
 
 # ignore env file
 .env
+
+.vscode/*
