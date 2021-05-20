@@ -1,0 +1,26 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  viewer:
+    build: ../
+    environment:
+      DB_USER: docker
+      DB_HOST: db
+      DB_NAME: gistviewerdb
+      DB_PASSWORD: docker
+      DB_PORT: 5432
+    ports:
+      - "3000:3000"
+    
