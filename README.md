@@ -48,7 +48,11 @@ The `postman` folder contains a postman collection for testing the endpoints.  T
 
 ## Time Spent
 
-I admittedly used a lot more time than the allotted 2 hours.  In total, I think I spent about 4 hours total on the project. This was essentially my first time digging into Node.js, so I spent a bit of time researching and getting familiar with that. In addition, I was a litle confused on the requirements and mistook "Favorite" with the GitHub "Star" terminology. After rereading the requirements, I went back and refactored a bit to include the Postgres integration to store the favorite gists.  This was also a little confusing in the requirements as it stated the API should connect to a permanent data store, but none of the functional requirements really made sense to store in any additional store when the GitHub api provided all of the basic functionality required.  Howev
+I admittedly used a lot more time than the allotted 2 hours.  In total, I think I spent about 4 hours total on the project. This was essentially my first time digging into Node.js, so I spent a bit of time researching and getting familiar with that. In addition, I was a litle confused on the requirements and mistook "Favorite" with the GitHub "Star" terminology. After rereading the requirements, I went back and refactored a bit to include the Postgres integration to store the favorite gists.  This was also a little confusing in the requirements as it stated the API should connect to a permanent data store, but it was a bit tough for me to see where any of the functional requirements really made sense for a permanent store.
+
+### 2 Hour branch
+
+I branched my work at around the 2 hour mark in the [feature/2hrmark](https://github.com/jaustin3/gist-viewer/tree/feature/2hrmark) branch.  At this point it was essentially just a pass through to the github api. But I figured I'd point it out just in case.
 
 ## Improvements
 
