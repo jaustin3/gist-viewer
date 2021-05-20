@@ -7,25 +7,25 @@ async function getGistsForUser(username) {
     return data;
 }
 
-async function getGistById(gistId){
+async function getGistById(gistId) {
     var gist = await axios.get(GITHUB_BASE_URL + `/gists/${gistId}`)
-    .then(res => res.data)
-    .catch(err => console.log(err));
+        .then(res => res.data)
+        .catch(err => console.log(err));
     return gist;
 }
 
-async function getStarredGists(){
-    var gist_list = await axios.get(GITHUB_BASE_URL + '/gists/starred',{
+async function getStarredGists() {
+    var gist_list = await axios.get(GITHUB_BASE_URL + '/gists/starred', {
         headers: {
             Authorization: `token ${config.token}`
         }
     })
-    .then(res => res.data)
-    .catch(err => console.log(err));
+        .then(res => res.data)
+        .catch(err => console.log(err));
     return gist_list;
 }
 
-async function starGist(gistId){
+async function starGist(gistId) {
     console.log(config.token);
     await axios.put(GITHUB_BASE_URL + `/gists/${gistId}/star`, {}, {
         headers: {
@@ -34,13 +34,13 @@ async function starGist(gistId){
     });
 }
 
-async function unStarGist(gistId){
+async function unStarGist(gistId) {
     await axios.delete(GITHUB_BASE_URL + `/gists/${gistId}/star`, {
         headers: {
             Authorization: 'Token ' + config.token
         }
     })
-    .catch(err => console.log(err));
+        .catch(err => console.log(err));
 }
 
 module.exports = { getGistsForUser, getGistById, starGist, unStarGist, getStarredGists }
