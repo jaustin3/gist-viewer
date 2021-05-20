@@ -12,3 +12,15 @@ services:
       - POSTGRES_PASSWORD=docker
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  viewer:
+    build: ../
+    environment:
+      DB_USER: docker
+      DB_HOST: db
+      DB_NAME: gistviewerdb
+      DB_PASSWORD: docker
+      DB_PORT: 5432
+    ports:
+      - "3000:3000"
+    
