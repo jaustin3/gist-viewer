@@ -2,20 +2,22 @@ const axios = require('axios')
 const config = require('../config/config')
 const GITHUB_BASE_URL = 'https://api.github.com'
 
-async function getGistsForUser(username) {
-    var data = await axios.get(GITHUB_BASE_URL + `/users/${username}/gists`).then(res => res.data);
+async function getGistsForUser(username, page = 1, page_size = 30) {
+    console.log(`Getting page ${page} of size ${page_size} of gists for user ${username}`);
+    let data = await axios.get(GITHUB_BASE_URL + `/users/${username}/gists?page=${page}&per_page=${page_size}`)
+        .then(res => res.data);
     return data;
 }
 
 async function getGistById(gistId) {
-    var gist = await axios.get(GITHUB_BASE_URL + `/gists/${gistId}`)
+    let gist = await axios.get(GITHUB_BASE_URL + `/gists/${gistId}`)
         .then(res => res.data)
         .catch(err => console.log(err));
     return gist;
 }
 
 async function getStarredGists() {
-    var gist_list = await axios.get(GITHUB_BASE_URL + '/gists/starred', {
+    let gist_list = await axios.get(GITHUB_BASE_URL + '/gists/starred', {
         headers: {
             Authorization: `token ${config.token}`
         }
@@ -26,7 +28,6 @@ async function getStarredGists() {
 }
 
 async function starGist(gistId) {
-    console.log(config.token);
     await axios.put(GITHUB_BASE_URL + `/gists/${gistId}/star`, {}, {
         headers: {
             Authorization: `token ${config.token}`
